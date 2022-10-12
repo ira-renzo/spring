@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Features</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <script>
+        function roleDelete() {
+            fetch("/role/delete/1", {
+                method: "DELETE"
+            }).then(response => response.text())
+                .then(text => alert(text))
+        }
+    </script>
+</head>
+
+<body>
+<table class="table h1" style="margin-block: 0">
+    <thead>
+    <tr>
+        <th>Feature</th>
+        <th>Syntax</th>
+        <th>HTTP Method</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Person - Create</td>
+        <td>/person/create</td>
+        <td>POST</td>
+    </tr>
+    <tr>
+        <td>Person - Delete</td>
+        <td>/person/delete/{personId}</td>
+        <td>DELETE</td>
+    </tr>
+    <tr>
+        <td>Person - Update</td>
+        <td>/person/update/{personId}</td>
+        <td>PUT</td>
+    </tr>
+    <tr>
+        <td>Person - Sorted List</td>
+        <td>/person/list/</td>
+        <td>GET</td>
+    </tr>
+    <tr>
+        <td>Person - Add Role</td>
+        <td>/person/add-role/{personId}</td>
+        <td>PUT</td>
+    </tr>
+    <tr>
+        <td>Person - Delete Role</td>
+        <td>/person/delete-role/{personId}</td>
+        <td>DELETE</td>
+    </tr>
+    <tr>
+        <td>Contact - Add</td>
+        <td>/contact/add/{personId}</td>
+        <td>PUT</td>
+    </tr>
+    <tr>
+        <td>Contact - Update</td>
+        <td>/contact/update/{personId}/{contactId}</td>
+        <td>PUT</td>
+    </tr>
+    <tr>
+        <td>Contact - Delete</td>
+        <td>/contact/delete/{personId}/{contactId}</td>
+        <td>DELETE</td>
+    </tr>
+    <tr>
+        <td>Role - Add</td>
+        <td>/role/add</td>
+        <td>POST</td>
+    </tr>
+    <tr>
+        <td>Role - Update</td>
+        <td>/role/update/{id}</td>
+        <td>PUT</td>
+    </tr>
+    <tr>
+        <td>Role - Delete</td>
+        <td>/role/delete/{id}</td>
+        <td>DELETE</td>
+    </tr>
+    <tr>
+        <td>Role - List</td>
+        <td>/role/list</td>
+        <td>GET</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>
