@@ -4,6 +4,7 @@ import com.ira.springexercise.models.Role;
 import com.ira.springexercise.repositories.RoleRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,10 +22,14 @@ public class DefaultRolesLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        List<Role> defaultRoles = Stream.of("admin", "dev", "qa", "ba")
-                .map(Role::new)
-                .collect(Collectors.toList());
-        roleRepository.saveAll(defaultRoles);
+        try {
+            List<Role> defaultRoles = Stream.of("admin", "dev", "qa", "ba")
+                    .map(Role::new)
+                    .collect(Collectors.toList());
+            roleRepository.saveAll(defaultRoles);
+        } catch (DataIntegrityViolationException exception) {
+            System.out.println("Roles Already Initialized");
+        }
     }
 
 }
