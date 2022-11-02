@@ -19,7 +19,7 @@ public class SpringExerciseApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
-                registry.addMapping("/**").allowedOriginPatterns("https://ira-renzo.github.io/angular-exercise/");
+                registry.addMapping("/**").allowedOriginPatterns("https://ira-renzo.github.io/angular-exercise");
             }
         };
     }
