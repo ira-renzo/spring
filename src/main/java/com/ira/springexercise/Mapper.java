@@ -9,7 +9,6 @@ import com.ira.springexercise.models.contact.ContactLandline;
 import com.ira.springexercise.models.contact.ContactMobileNumber;
 import org.springframework.stereotype.Component;
 
-@SuppressWarnings("DuplicatedCode")
 @Component
 public class Mapper {
 

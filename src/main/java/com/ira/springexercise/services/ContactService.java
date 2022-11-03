@@ -2,6 +2,9 @@ package com.ira.springexercise.services;
 
 import com.ira.springexercise.models.Person;
 import com.ira.springexercise.models.contact.ContactAbstract;
+import com.ira.springexercise.models.contact.ContactEmail;
+import com.ira.springexercise.models.contact.ContactLandline;
+import com.ira.springexercise.models.contact.ContactMobileNumber;
 import com.ira.springexercise.repositories.ContactRepository;
 import com.ira.springexercise.repositories.PersonRepository;
 import org.springframework.stereotype.Service;
@@ -22,7 +25,7 @@ public class ContactService {
         if (personToEdit == null) return "Person ID Not Found";
         personToEdit.getContacts().add(contact);
         personRepository.save(personToEdit);
-        return String.format("Added: %s", contact.getClass());
+        return String.format("Added: %s", getContactValue(contact));
     }
 
     public String contactUpdate(Integer personId, Integer contactIdToUpdate, ContactAbstract newContact) {
@@ -33,7 +36,7 @@ public class ContactService {
                 personToEdit.getContacts().remove(contact);
                 personToEdit.getContacts().add(newContact);
                 personRepository.save(personToEdit);
-                return String.format("Updated: [%d] %s", contactIdToUpdate, newContact.getClass());
+                return String.format("Updated: [%d] %s", contactIdToUpdate, getContactValue(contact));
             }
         }
         return "Contact ID Not Found In User";
@@ -46,10 +49,17 @@ public class ContactService {
             if (contact.getId() == contactIdToDelete) {
                 personToEdit.getContacts().remove(contact);
                 personRepository.save(personToEdit);
-                return String.format("Delete: [%d] %s", contactIdToDelete, contact.getClass());
+                return String.format("Delete: [%d] %s", contactIdToDelete, getContactValue(contact));
             }
         }
         return "Contact ID Not Found In User";
+    }
+
+    private String getContactValue(ContactAbstract contact) {
+        if (contact instanceof ContactEmail) return ((ContactEmail) contact).getEmail();
+        else if (contact instanceof ContactLandline) return ((ContactLandline) contact).getLandline();
+        else if (contact instanceof ContactMobileNumber) return ((ContactMobileNumber) contact).getMobileNumber();
+        return null;
     }
 
 }
