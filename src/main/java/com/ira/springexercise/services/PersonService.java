@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -23,12 +24,13 @@ public class PersonService {
         this.roleRepository = roleRepository;
     }
 
-    public String personCreate(Person newPerson) {
+    public Map<String, Object> personCreate(Person newPerson) {
         personRepository.save(newPerson);
-        return String.format("Saved: [%d] %s %s",
+        String result = String.format("Saved: [%d] %s %s",
                 newPerson.getId(),
                 newPerson.getName().getFirstName(),
                 newPerson.getName().getLastName());
+        return Map.of("result", result, "person", newPerson);
     }
 
     public String personDelete(Integer id) {

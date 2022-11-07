@@ -24,9 +24,9 @@ public class PersonController {
     }
 
     @PostMapping(value = "/create")
-    public Map<String, String> personCreate(@RequestBody PersonDTO personDTO) {
+    public Map<String, Object> personCreate(@RequestBody PersonDTO personDTO) {
         Person newPerson = mapper.toPerson(personDTO);
-        return Collections.singletonMap("result", personService.personCreate(newPerson));
+        return personService.personCreate(newPerson);
     }
 
     @DeleteMapping("/delete/{personId}")
