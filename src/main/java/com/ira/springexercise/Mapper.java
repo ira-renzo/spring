@@ -25,12 +25,12 @@ public class Mapper {
 
     public ContactAbstract toContact(ContactDTO contactDTO) {
         switch (contactDTO.getType()) {
-            case ("EMAIL"):
-                return new ContactEmail(contactDTO.getContactInfo());
-            case ("LANDLINE"):
-                return new ContactLandline(contactDTO.getContactInfo());
-            case ("MOBILE"):
-                return new ContactMobileNumber(contactDTO.getContactInfo());
+            case EMAIL:
+                return new ContactEmail(contactDTO.getValue());
+            case LANDLINE:
+                return new ContactLandline(contactDTO.getValue());
+            case MOBILE:
+                return new ContactMobileNumber(contactDTO.getValue());
             default:
                 return null;
         }

@@ -45,12 +45,18 @@ public class PersonService {
     }
 
     public String personUpdate(Person personToUpdate) {
-        if (!personRepository.existsById(personToUpdate.getId())) return "Person Does Not Exist";
-        personRepository.save(personToUpdate);
-        return String.format("Updated: [%d] %s %s",
-                personToUpdate.getId(),
-                personToUpdate.getName().getFirstName(),
-                personToUpdate.getName().getLastName());
+        try {
+            Person originalPerson = personRepository.findById(personToUpdate.getId()).orElseThrow();
+            personToUpdate.setContacts(originalPerson.getContacts());
+            personToUpdate.setRoles(originalPerson.getRoles());
+            personRepository.save(personToUpdate);
+            return String.format("Updated: [%d] %s %s",
+                    personToUpdate.getId(),
+                    personToUpdate.getName().getFirstName(),
+                    personToUpdate.getName().getLastName());
+        } catch (NoSuchElementException exception) {
+            return "ID Not Found";
+        }
     }
 
     public List<Person> personList() {

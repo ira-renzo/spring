@@ -49,16 +49,16 @@ public class ContactService {
             if (contact.getId() == contactIdToDelete) {
                 personToEdit.getContacts().remove(contact);
                 personRepository.save(personToEdit);
-                return String.format("Delete: [%d] %s", contactIdToDelete, getContactValue(contact));
+                return String.format("Deleted: [%d] %s", contactIdToDelete, getContactValue(contact));
             }
         }
         return "Contact ID Not Found In User";
     }
 
     private String getContactValue(ContactAbstract contact) {
-        if (contact instanceof ContactEmail) return ((ContactEmail) contact).getEmail();
-        else if (contact instanceof ContactLandline) return ((ContactLandline) contact).getLandline();
-        else if (contact instanceof ContactMobileNumber) return ((ContactMobileNumber) contact).getMobileNumber();
+        if (contact instanceof ContactEmail) return ((ContactEmail) contact).getValue();
+        else if (contact instanceof ContactLandline) return ((ContactLandline) contact).getValue();
+        else if (contact instanceof ContactMobileNumber) return ((ContactMobileNumber) contact).getValue();
         return null;
     }
 

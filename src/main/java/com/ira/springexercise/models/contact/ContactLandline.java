@@ -10,13 +10,14 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 public class ContactLandline extends ContactAbstract {
 
-    private String landline;
+    private final ContactEnum type = ContactEnum.LANDLINE;
+    private String value;
 
     public ContactLandline() {
     }
 
-    public ContactLandline(String landline) {
-        this.landline = landline;
+    public ContactLandline(String value) {
+        this.value = value;
     }
 
 }

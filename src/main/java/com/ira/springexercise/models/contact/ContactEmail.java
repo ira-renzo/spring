@@ -10,13 +10,14 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 public class ContactEmail extends ContactAbstract {
 
-    private String email;
+    private final ContactEnum type = ContactEnum.EMAIL;
+    private String value;
 
     public ContactEmail() {
     }
 
-    public ContactEmail(String email) {
-        this.email = email;
+    public ContactEmail(String value) {
+        this.value = value;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.ira.springexercise.models.contact;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -9,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Data
 @Table(name = "contact")
+@Data
+@NoArgsConstructor
 public abstract class ContactAbstract {
 
     @Id
