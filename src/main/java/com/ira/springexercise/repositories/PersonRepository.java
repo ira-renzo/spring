@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Integer> {
+
+    boolean existsByName_LastNameAndName_FirstName(String name_lastName, String name_firstName);
+
 }
